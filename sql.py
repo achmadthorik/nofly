@@ -17,7 +17,7 @@ def create_table():
     battery TEXT,
     water_level TEXT,
     radar INTEGER,
-    occupied INTEGER
+    interval INTEGER
   )
   """)
   connection_cursor.close()
@@ -54,6 +54,7 @@ def delete_device(id):
   connection_cursor = connection.cursor()
   connection_cursor.execute("DELETE FROM devices WHERE id=?", (id,))
   connection_cursor.close()
+  connection.commit()
 
 def select_device_id():
   connection_cursor = connection.cursor()
@@ -67,7 +68,7 @@ def select_device_id():
 
 def main():
   print(select_device_id())
-  return
+  #return
   reset_database()
   insert_new_device('A')
   insert_new_device('B')
